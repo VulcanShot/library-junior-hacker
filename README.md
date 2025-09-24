@@ -15,10 +15,10 @@ Linear game for [CyberRangeCZ Platform](https://docs.platform.cyberrange.cz/).
 ## Topology summary
 |Host|Image|Flavor|
 |-|-|-|
-|attacker|kali|standard.small|
-|server|debian-12-x86_64|standard.small|
-|client|debian-12-x86_64|standard.small|
-|router|debian-12-x86_64|standard.small|
+|attacker|kali|e1.1core-2ram|
+|server|debian-12-x86_64|e1.1core-2ram|
+|client|debian-12-x86_64|e1.1core-2ram|
+|router|debian-12-x86_64|e1.1core-2ram|
 
 ## License
 
