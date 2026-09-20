@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-orange.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-Linear game for [CyberRangeCZ Platform](https://docs.platform.cyberrange.cz/).
+Linear game for [CyberRangeCZ Platform](https://docs.platform.cyberrange.cz/). I am in the process of modifying it to fit a new multiplayer feature I am developing.
 
 ## Game Levels Summary
 - connect to sandbox and read general info
