@@ -1,23 +1,47 @@
 name: library-junior-hacker
 
 hosts:
-  - name: attacker
+  - name: red-kali
     base_box:
       image: kali
       mgmt_user: debian
     flavor: standard.small
+    visible_by_roles: [red-team]
 
-  - name: server
+  - name: red-server
     base_box:
       image: debian-12-x86_64
       mgmt_user: debian
     flavor: standard.small
+    visible_by_roles: [red-team, blue-team]
 
-  - name: client
+  - name: blue-kali
+    base_box:
+      image: kali
+      mgmt_user: debian
+    flavor: standard.small
+    visible_by_roles: [blue-team]
+
+  - name: blue-server
     base_box:
       image: debian-12-x86_64
       mgmt_user: debian
     flavor: standard.small
+    visible_by_roles: [red-team, blue-team]
+
+  - name: checker-1
+    base_box:
+      image: debian-12-x86_64
+      mgmt_user: debian
+    flavor: standard.small
+    hidden: False
+
+  - name: checker-2
+    base_box:
+      image: debian-12-x86_64
+      mgmt_user: debian
+    flavor: standard.small
+    hidden: True
 
 routers:
   - name: router
@@ -31,31 +55,64 @@ wan:
   cidr: 100.100.100.0/24
 
 networks:
-  - name: target-switch
-    cidr: 10.1.26.0/24
+  - name: red-switch
+    cidr: 10.1.21.0/24
+    accessible_by_user: True
+  - name: blue-switch
+    cidr: 10.1.22.0/24
+    accessible_by_user: True
+  - name: checker-1-switch
+    cidr: 10.1.23.0/24
     accessible_by_user: False
-  - name: attacker-switch
-    cidr: 10.1.27.0/24
+  - name: checker-2-switch
+    cidr: 10.1.24.0/24
+    accessible_by_user: True
 
 net_mappings:
-  - host: attacker
-    network: attacker-switch
-    ip: 10.1.27.23
+  - host: red-kali
+    network: red-switch
+    ip: 10.1.21.10
 
-  - host: server
-    network: target-switch
-    ip: 10.1.26.9
+  - host: red-server
+    network: red-switch
+    ip: 10.1.21.20
 
-  - host: client
-    network: target-switch
-    ip: 10.1.26.4
+  - host: blue-kali
+    network: blue-switch
+    ip: 10.1.22.10
+
+  - host: blue-server
+    network: blue-switch
+    ip: 10.1.22.20
+
+  - host: checker-1
+    network: checker-1-switch
+    ip: 10.1.23.10
+
+  - host: checker-2
+    network: checker-2-switch
+    ip: 10.1.24.10
 
 router_mappings:
   - router: router
-    network: target-switch
-    ip: 10.1.26.1
+    network: red-switch
+    ip: 10.1.21.1
   - router: router
-    network: attacker-switch
-    ip: 10.1.27.1
+    network: blue-switch
+    ip: 10.1.22.1
+  - router: router
+    network: checker-1-switch
+    ip: 10.1.23.1
+  - router: router
+    network: checker-2-switch
+    ip: 10.1.24.1
 
-groups: []
+groups:
+  - name: attacker
+    nodes:
+      - red-kali
+      - blue-kali
+  - name: server
+    nodes:
+      - red-server
+      - blue-server

@@ -1,8 +1,7 @@
-- name: Adding aliases
-  loop: "{{ aliases | dict2items }}"
+- name: Adding self alias
   lineinfile:
     path: /etc/hosts
-    line: "{{ item.value }} {{ item.key }}"
+    line: "{{ ansible_host }} {{ inventory_hostname }}"
 
 - name: Add zip's password to the wordlist
   lineinfile:

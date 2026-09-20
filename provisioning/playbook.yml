@@ -20,12 +20,6 @@
     - role: attacker
     - role: chrony
 
-- name: Configure client
-  hosts: client
-  become: true
-  roles:
-    - role: client
-
 - name: Configure server
   hosts: server
   become: true
