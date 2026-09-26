@@ -3,7 +3,7 @@ name: library-junior-hacker
 hosts:
   - name: red-kali
     base_box:
-      image: kali
+      image: kali-old
       mgmt_user: debian
     flavor: standard.small
     visible_by_roles: [red-team]
@@ -17,7 +17,7 @@ hosts:
 
   - name: blue-kali
     base_box:
-      image: kali
+      image: kali-old
       mgmt_user: debian
     flavor: standard.small
     visible_by_roles: [blue-team]
