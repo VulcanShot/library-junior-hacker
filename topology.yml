@@ -57,10 +57,10 @@ wan:
 networks:
   - name: red-switch
     cidr: 10.1.21.0/24
-    accessible_by_user: True
+    accessible_by_roles: [red-team]
   - name: blue-switch
     cidr: 10.1.22.0/24
-    accessible_by_user: True
+    accessible_by_roles: [blue-team]
   - name: checker-1-switch
     cidr: 10.1.23.0/24
     accessible_by_user: False
