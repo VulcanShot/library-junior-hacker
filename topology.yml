@@ -116,3 +116,11 @@ groups:
     nodes:
       - red-server
       - blue-server
+
+vpn:
+  entrypoints:
+    - name: router
+      routes:
+        - 10.1.21.0/24
+        - 10.1.22.0/24
+        - 10.1.24.0/24
